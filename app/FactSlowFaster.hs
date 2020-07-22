@@ -1,3 +1,5 @@
+{-# LANGUAGE BangPatterns #-}
+
 module Main where
 
 import Data.FastMult (FastMultSeq)
@@ -5,8 +7,8 @@ import Lib
 
 fact :: Integral n => n -> n
 fact = go 1 where
-  go acc 0 = acc
-  go acc n = go (acc * n) (n - 1)
+  go !acc 0 = acc
+  go !acc n = go (acc * n) (n - 1)
 
 main :: IO ()
 main = do
